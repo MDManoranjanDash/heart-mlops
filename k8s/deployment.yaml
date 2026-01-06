@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heart-mlops-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: heart-mlops
+  template:
+    metadata:
+      labels:
+        app: heart-mlops
+    spec:
+      containers:
+        - name: api
+          image: your-dockerhub-username/heart-mlops:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MODEL_PATH
+              value: "/app/models/final_model.joblib"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20

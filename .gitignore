@@ -1,0 +1,34 @@
+# HEART-MLOPS/.gitignore
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo 
+*.pyd 
+*.so 
+
+# Virtual Envirnoment
+.venv/
+venv/
+env/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# MLflow experiment tracking artifacts
+mlruns/
+
+# Model artifacts (optional - this will not commit trainined models)
+models/*.joblib
+models/*.pkl
+models/*.onnx
+
+# Data files
+data/raw
+data/processed
+
+
+
+
+
+

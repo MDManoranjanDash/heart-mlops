@@ -1,0 +1,13 @@
+# k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: heart-mlops-svc
+spec:
+  type: NodePort
+  selector:
+    app: heart-mlops
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080
